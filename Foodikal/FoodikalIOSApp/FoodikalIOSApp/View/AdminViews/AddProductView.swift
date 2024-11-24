@@ -13,7 +13,7 @@ struct AddProductView: View {
     @State private var price: Int? = nil
     @State private var description: String = ""
     
-    @Environment (\.dismiss) var dismiss
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         VStack{
@@ -83,4 +83,5 @@ struct AddProductView_Previews: PreviewProvider {
             
     }
 }
+
 

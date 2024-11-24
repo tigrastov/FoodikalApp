@@ -19,26 +19,30 @@ struct ProfileView: View {
         
         VStack{
             
-            HStack{
-                Text("Profile").bold().font(.system(size: 40)).foregroundStyle(Color.white)
-                Spacer()
-            }
-                 .padding()
-              .frame(height: 80)
+            Image(.profileText)
                 
-            
-            HStack{
-                Image("NameImg").padding()
+            VStack(alignment: .leading){
                 
-                TextField("Name - MustHave", text: $viewModel.profile.name).focused($focus, equals: .first).font(.system(size: 16)).foregroundStyle(Color.black).padding().background(Color("ProfileColor")).frame(height: 40).cornerRadius(25)
-                
-                
-                Button {
-                    isQuitAlertPresented.toggle()
-                } label: {
-                    Image("ExitCirc")
-                }.padding()
-                
+                HStack{
+                    
+                    Image("NameImg").padding()
+                    
+                    TextField("Name - MustHave", text: $viewModel.profile.name).focused($focus, equals: .first).font(.system(size: 16)).foregroundStyle(.foodyRed).padding().background(.white).frame(height: 40).cornerRadius(25)
+                    
+                    
+                    Button {
+                        isQuitAlertPresented.toggle()
+                    } label: {
+                        VStack{
+                            Image("ExitCirc")
+                            Text("Exit").font(.system(size: 12))
+                        }
+                        
+                        
+                    }
+                    
+                    .padding()
+                    
                     .confirmationDialog(Text("Do you really want to leave?"), isPresented: $isQuitAlertPresented) {
                         Button {
                             isAuthViewPresented.toggle()
@@ -49,38 +53,47 @@ struct ProfileView: View {
                     .fullScreenCover(isPresented: $isAuthViewPresented, onDismiss: nil) {
                         AuthView()
                     }
+                }
+                .frame(height: 80)
+                
+                HStack{
+                    Image("AdressImg").padding()
+                    
+                    TextField("Address - MustHave!", text: $viewModel.profile.address).focused($focus, equals: .second).font(.system(size: 16)).foregroundStyle(.foodyRed).padding().background(.white).frame(height: 40).cornerRadius(25)
+                }
+                .padding(.trailing, 12)
+                .frame(height: 80)
+                
+                HStack{
+                    Image("PhoneImg").padding()
+                    
+                    TextField("Phone - MustHave", value: $viewModel.profile.phone, format: .number).keyboardType(.asciiCapableNumberPad).focused($focus, equals: .third).font(.system(size: 16)).foregroundStyle(.foodyRed).padding().background(.white).frame(height: 40).cornerRadius(25)
+                    
+                    Button {
+                        print("save")
+                        
+                        viewModel.setProfile()
+                    } label: {
+                        VStack{
+                            Image("NewSave")
+                            Text("Save").font(.system(size: 12))
+                        }
+                        
+                        
+                    }.padding()
+                    
+                }
+                .frame(height: 80)
+                
+                
             }
-            .frame(height: 80)
             
-            HStack{
-                Image("AdressImg").padding()
-                
-                TextField("Adress - MustHave!", text: $viewModel.profile.address).focused($focus, equals: .second).font(.system(size: 16)).foregroundStyle(Color.black).padding().background(Color("ProfileColor")).frame(height: 40).cornerRadius(25)
-            }
-            .padding(.trailing, 10)
-            .frame(height: 80)
-            
-            HStack{
-                Image("PhoneImg").padding()
-                
-                TextField("Phone - MustHave", value: $viewModel.profile.phone, format: .number).keyboardType(.asciiCapableNumberPad).focused($focus, equals: .third).font(.system(size: 16)).foregroundStyle(Color.black).foregroundStyle(Color.black).padding().background(Color("ProfileColor")).frame(height: 40).cornerRadius(25)
-                
-                Button {
-                    print("save")
-                    
-                    viewModel.setProfile()
-                } label: {
-                    
-                    Image("ButtonSave")
-                    
-                }.padding()
-                
-            }
-            .frame(height: 80)
             
             List{
+                Image(.yourOrders)
+                
                 if viewModel.orders.count == 0{
-                    Text("Your orders will be here").font(.system(size: 16))
+                    Text("Your orders will be here").foregroundStyle(.foodyRed).font(.system(size: 16))
                 }else{
                     ForEach(viewModel.orders, id: \.id) { order in
                         
@@ -92,17 +105,20 @@ struct ProfileView: View {
                             }
                     }
                 }
-                
             }
-            .listStyle(.plain).frame(maxHeight: 200).padding(.bottom, 20).padding(.top, 20).cornerRadius(25)
+            
+            .listStyle(.plain).frame(maxHeight: 250).padding(.bottom, 20).padding(.top, 20).cornerRadius(25)
+            
             
             
         }
         
         .frame(width: screen.width, height: screen.height).ignoresSafeArea()
        
+        /*
         .background(Image("BackProfile").resizable().scaledToFill().ignoresSafeArea())
-        
+        */
+        .background(.foodyRed)
         .onSubmit {
             viewModel.setProfile()
             print("on submit")

@@ -68,7 +68,7 @@ struct OrderView: View {
         
         if let  user = AuthService.shared.currentUser{
             if user.uid != "FvzHRWC9loMDkOXbE4MYc2UtFaJ2"{
-                Text("Для уточнения деталей доставки наш администратор позвонит вам на номер, указанный в настройках профиля").foregroundStyle(Color("darkRed")).padding()
+                Text("To clarify the delivery details, our administrator will call you at the number specified in the profile settings").foregroundStyle(Color("darkRed")).padding()
             }
         }
        

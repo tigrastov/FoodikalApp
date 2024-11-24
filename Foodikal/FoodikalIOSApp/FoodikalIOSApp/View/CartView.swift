@@ -14,7 +14,21 @@ struct CartView: View {
             VStack {
                
                 VStack {
-                    Text("Cart").bold().font(.system(size: 40)).foregroundStyle(Color.black).padding()
+                    Image(.cartHead)
+                    
+                    HStack(spacing: 180){
+                        VStack{
+                            Image("Wallet")
+                            Text("Cost").foregroundStyle(.foodyRed).fontWeight(.semibold)
+                        }
+                        .offset(x: 20)
+                       
+                        
+                        
+                        Text("\(viewModel.cost) din").foregroundStyle(.foodyRed).fontWeight(.bold).padding()
+                }
+                   
+                    
                     List(viewModel.positions){ position in
                        
                             PositionCell(position: position)
@@ -25,28 +39,26 @@ struct CartView: View {
                                         }
                                     } label: {
                                         Text("Delete")
-                                    }.background(Color.red)
+                                    }
+                                
                                 }
                        
                     }.listStyle(.plain)
-                        .navigationTitle("Корзина")
-                }.background(GlassView(removeEffects: false)).cornerRadius(20).shadow(radius: 20).padding().padding(.top, 10)
+                        .navigationTitle("Cart")
+                }.background(Color.white).cornerRadius(20).shadow(radius: 5).padding().padding(.top, 10)
                     .frame(height: screen.height / 2)
                 
-                Image("Wallet")
-                    .overlay {
-                        HStack{
-                            Spacer()
-                            Text("\(viewModel.cost) din").fontWeight(.bold).padding()
-                    }
-                }.padding()
             
-                HStack(spacing: 30){
+                HStack(spacing: 70){
                     Button {
                         viewModel.positions.removeAll()
                         print("Очистить корзину")
                     } label: {
-                        Image("ClearCartButton")
+                        //Image("ClearCartButton")
+                        VStack{
+                            Image(.garbage).opacity(0.5)
+                            Text("Delete all")
+                        }
                     }
                         
                     Button {
@@ -55,7 +67,11 @@ struct CartView: View {
                         
                        
                     } label: {
-                        Image("AddOrderButton")
+                        VStack{
+                            Image(.sent)
+                            Text("Sent order").foregroundStyle(.white).fontWeight(.bold)
+                        }
+                        
                     }
                     .confirmationDialog("Do you want sent an order?", isPresented: $isShowDialogOrder) {
                         
@@ -91,9 +107,9 @@ struct CartView: View {
                         }
                        
                     }
-                    .alert(Text("Order is accepted / Ваш заказ принят!"), isPresented: $isShowAlertAboutOrderSent) {
+                    .alert(Text("Order is accepted!"), isPresented: $isShowAlertAboutOrderSent) {
                     } message: {
-                        Text("The administrator will call you to clarify delivery details to the number specified in your profile / Администратор позвонит вам для уточнения деталей доставки на указанный в профиле номер")
+                        Text("To clarify the delivery details, our administrator will call you at the number specified in the profile settings")
                     }
                     .alert(Text("Error: empty order"), isPresented: $isShowAlertAboutEmptyOrder) {
                     } message: {
@@ -107,7 +123,7 @@ struct CartView: View {
             }
             .frame(width: screen.width, height: screen.height).ignoresSafeArea()
             
-            .background(Image("GrayRed").resizable().scaledToFill().ignoresSafeArea())
+            .background(.foodyRed).ignoresSafeArea()
                
     }
 }

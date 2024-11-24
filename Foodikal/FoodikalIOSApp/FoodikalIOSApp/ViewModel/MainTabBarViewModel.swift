@@ -3,6 +3,8 @@
 import Foundation
 import FirebaseAuth
 
+
+
 class MainTabBarViewModel: ObservableObject{
     
     @Published var user: User
@@ -12,3 +14,4 @@ class MainTabBarViewModel: ObservableObject{
     }
     
 }
+

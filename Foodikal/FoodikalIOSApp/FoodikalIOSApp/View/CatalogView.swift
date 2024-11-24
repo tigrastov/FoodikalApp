@@ -27,7 +27,7 @@ struct CatalogView: View {
                                         
                                     label: {
                                         ProductCell(product: item)
-                                            .foregroundStyle(Color.black)
+                                            .foregroundStyle(Color.foodyRed)
                                     }
                                         
                                     }
@@ -41,11 +41,11 @@ struct CatalogView: View {
                     
                     
                 }
-            .padding(.bottom, 40)
+            //.padding(.bottom, 40)
         }
         
-        .background(Image("CatalogBg").resizable().ignoresSafeArea())
-        .navigationBarTitle("Menu")
+        .background(Color.foodyRed).ignoresSafeArea()
+        //.navigationBarTitle("Menu")
         
             .onAppear {
             viewModel.getProducts()

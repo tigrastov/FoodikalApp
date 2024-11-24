@@ -8,15 +8,12 @@ struct OrderCell: View {
     var body: some View {
         VStack{
             HStack{
-                Text("\(order.date)").font(.system(size: 8)).font(.body)
+                Text("\(order.date)").foregroundStyle(.foodyRed).font(.system(size: 8)).font(.body)
                 Text("\(order.cost )").bold().frame(width: 90).font(.system(size: 14)).foregroundStyle(Color.red)
-                Text("\(order.status )").frame(width: 100).font(.system(size: 14)).foregroundStyle(Color.black)
+                Text("\(order.status )").frame(width: 100).font(.system(size: 14)).foregroundStyle(.foodyRed)
             }
-                .padding()
-                .shadow(radius: 10)
-                .background(Color("ColorMenu"))
-                .cornerRadius(25)
-                .shadow(radius: 10)
+                //.padding()
+                
         }
         .frame(height: 40)
     }

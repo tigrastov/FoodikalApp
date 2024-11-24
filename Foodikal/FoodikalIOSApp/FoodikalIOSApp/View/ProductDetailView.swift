@@ -12,11 +12,13 @@ struct ProductDetailView: View {
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
-        
+    
         VStack{
-            
-           
+            Image(.details)
                VStack(alignment: .leading){
+                   
+                   
+                   
                     ScrollView{
                         Image(uiImage: self.viewModel.image)
                             .resizable()
@@ -34,32 +36,31 @@ struct ProductDetailView: View {
                                     Image("Back")
                                 }
                                 Spacer()
-                            }.offset(y: -20)
+                            }.offset(y: 0)
                            
                         })
                         
-                
                         HStack {
-                            Text(viewModel.product.title).foregroundStyle(Color.white)
+                            Text(viewModel.product.title).foregroundStyle(Color.foodyRed)
                                 .font(.title2.bold())
                             
                             Spacer()
                             
                             
                             Text("\(viewModel.getPrice(count: self.count)) din")
-                                .font(.title2).foregroundStyle(Color.white)
+                                .font(.title2).foregroundStyle(Color.foodyRed)
                             
                              
                         }.padding(.horizontal)
                         
                         Text("\(viewModel.product.descript)")
-                            .foregroundStyle(Color.white)
+                       .foregroundStyle(Color.foodyRed)
                             .padding(.horizontal)
                             .padding(.vertical, 4)
                         
                         HStack {
-                            Stepper("How many?", value: $count, in: 1...10).foregroundStyle(Color.white)
-                            Text("\(self.count)").foregroundStyle(Color.white)
+                            Stepper("How many?", value: $count, in: 1...10).foregroundStyle(Color.foodyRed)
+                            Text("\(self.count)").foregroundStyle(Color.foodyRed)
                                 .padding(.leading, 50)
                             
                     
@@ -75,7 +76,11 @@ struct ProductDetailView: View {
                                 presentationMode.wrappedValue.dismiss()
                                 
                             } label: {
-                                Image("AddButton")
+                                VStack{
+                                    Image(.addCart)
+                                    Text("Add to cart")
+                                }
+                                
                             }
                            Spacer()
                             
@@ -86,9 +91,9 @@ struct ProductDetailView: View {
            }
             .navigationBarBackButtonHidden()
             
-            .frame(width: screen.width, height: screen.height * 0.62 )
-                .background(GlassView(removeEffects: false)).ignoresSafeArea()
-            Spacer()
+            .frame(width: screen.width, height: screen.height * 0.65 )
+            .background(Color.white).ignoresSafeArea()
+            //Spacer()
                 }
         .onAppear {
             self.viewModel.getImage()
@@ -96,7 +101,7 @@ struct ProductDetailView: View {
         }
         
         .frame(width: screen.width, height: screen.height).ignoresSafeArea()
-        .background(Image("DetailView").resizable().scaledToFill().ignoresSafeArea())
+        .background(Color.foodyRed).ignoresSafeArea()
         
     }
     

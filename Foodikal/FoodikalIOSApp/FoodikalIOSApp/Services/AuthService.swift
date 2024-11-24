@@ -59,10 +59,6 @@ class AuthService{
             }else if let error = error{
                 completion(.failure(error))
             }
-            
         }
-        
     }
-    
-     
 }

@@ -1,5 +1,4 @@
 
-
 import SwiftUI
 import Firebase
 import FirebaseAuth
@@ -7,8 +6,13 @@ import FirebaseAuth
 let screen = UIScreen.main.bounds
 @main
 struct FoodikalIOSApp: App {
-    @UIApplicationDelegateAdaptor  private var appDelegate: AppDelegate
+    //@UIApplicationDelegateAdaptor  private var appDelegate: AppDelegate
     
+    init(){
+        FirebaseApp.configure()
+        FirebaseConfiguration.shared.setLoggerLevel(.min)
+    }
+        
     var body: some Scene {
         WindowGroup {
             
@@ -28,6 +32,8 @@ struct FoodikalIOSApp: App {
             }
         }
     }
+    
+    /*
         class AppDelegate: NSObject, UIApplicationDelegate {
             
             func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
@@ -36,6 +42,8 @@ struct FoodikalIOSApp: App {
                 return true
             }
         }
+    */
+    
     }
 
 

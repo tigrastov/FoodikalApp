@@ -10,14 +10,14 @@ struct PositionCell: View {
     
         HStack{
             
-            Text(position.product.title)
+            Text(position.product.title).foregroundStyle(.foodyRed)
                 .fontWeight(.bold)
             Spacer()
             
-            Text("\(position.count)")
+            Text("\(position.count)").foregroundStyle(.foodyRed)
             Spacer()
             
-            Text("\(position.cost) din")
+            Text("\(position.cost) din").foregroundStyle(.foodyRed)
                 .frame(width: 80, alignment: .trailing)
             
         }

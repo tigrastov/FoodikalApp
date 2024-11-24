@@ -1,9 +1,8 @@
 
 import SwiftUI
 
-struct TabBar: View {
-    
-    
+
+struct TabBar: View{
     
     var viewModel: MainTabBarViewModel
     
@@ -12,24 +11,42 @@ struct TabBar: View {
             
            NavigationView{
                 
-                
                 CatalogView()
            }
             .tabItem {
-                Image("ButtonCatalogLitle").resizable().scaledToFill()
+                //Image("ButtonCatalogLitle").resizable().scaledToFill()
+                Image(systemName: "book.fill").tint(.white).foregroundStyle(.white).opacity(0.0)
+                Text("Catalog")
             }
+            .foregroundStyle(.white)
+            
             
             CartView(viewModel: CartViewModel.shared)
                 .tabItem {
-                    Image("ButtonCartLitle").resizable().scaledToFill()
+                    //Image("ButtonCartLitle").resizable().scaledToFill()
+                    Image(systemName: "cart.circle.fill").tint(.white).foregroundStyle(.white)
+                    Text("Cart")
                 }
-            
+        
             ProfileView(viewModel: ProfileViewModel(profile: MVUser(id: "", name: "", phone: 0000000000, address: "")))
                 .tabItem {
-                    Image("ButtonProfileLitle").resizable().scaledToFill()
-                        
+                    //Image("ButtonProfileLitle").resizable().scaledToFill()
+                    Image(systemName: "person.circle.fill").tint(.white).foregroundStyle(.white)
+                    Text("Profile")
+                        .foregroundStyle(.whiteCustom)
                 }
         }
+        
+        //.colorInvert()
+        .accentColor(.white.opacity(0.5))
+         
+        .onAppear{
+            UITabBar.appearance().unselectedItemTintColor = UIColor.white
+            
+        }
+        
     }
+         
 }
+
 
